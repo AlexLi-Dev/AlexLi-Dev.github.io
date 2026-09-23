@@ -1,12 +1,5 @@
 ---
 import { siteConfig } from "../config";
-
-const profileImage =
-  "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=" +
-  encodeURIComponent(
-    "professional corporate headshot portrait of a confident young asian male site reliability engineer wearing a casual dark hoodie, short hair, friendly calm expression, soft studio lighting, clean light gray background, photorealistic, high detail"
-  ) +
-  "&image_size=square_hd";
 ---
 
 <section
@@ -88,10 +81,8 @@ const profileImage =
         ></div>
         <div class="relative aspect-square overflow-hidden rounded-[1rem] border-2 border-white bg-gray-200 shadow-xl shadow-gray-900/20 lg:rounded-[1.75rem] lg:border-4 lg:shadow-2xl">
           <img
-            src={profileImage}
-            alt={`${siteConfig.name}的职业头像`}
-            width={680}
-            height={680}
+            src="/avatar.jpg"
+            alt={`${siteConfig.name}的头像`}
             class="size-full object-cover"
             loading="eager"
             fetchpriority="high"

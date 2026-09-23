@@ -182,26 +182,6 @@ export const siteConfig = {
       icon: "/logos/django.svg",
       skills: ["Python", "Django", "SQLite"],
     },
-    {
-      name: "C-Note",
-      eyebrow: "Data Structures",
-      description:
-        "使用 C++ 实现常见数据结构，包含顺序表大类等基础结构的定义与操作实现。",
-      proof: "C++ · 数据结构 · 顺序表",
-      link: "https://github.com/AlexLi-Dev/C-Note",
-      icon: "/logos/cpp.svg",
-      skills: ["C++", "Data Structures"],
-    },
-    {
-      name: "C-",
-      eyebrow: "Practice",
-      description:
-        "C++ 基础语法与常见操作练习，在实践中巩固语言特性与常用操作。",
-      proof: "C++ · 基础练习",
-      link: "https://github.com/AlexLi-Dev/C-",
-      icon: "/logos/cpp-practice.svg",
-      skills: ["C++", "Practice"],
-    },
   ],
   notes: {
     intro:

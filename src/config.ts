@@ -7,8 +7,8 @@ const t2i = (prompt: string, image_size: string) =>
 
 export const siteConfig = {
   name: "Alex Li",
-  title: "运维开发工程师",
-  jobObjective: "运维开发工程师",
+  title: "稳定性站点工程师——SRE",
+  jobObjective: "SRE/GO开发工程师",
   description:
     "Alex Li 的个人网站：运维开发工程师，专注 Go、Kubernetes、云原生基础设施、可观测性与自动化，把复杂系统变得稳定、可观测、可自动化。",
   siteUrl: "https://alexli-dev.github.io",
@@ -72,50 +72,73 @@ export const siteConfig = {
       ],
     },
   ],
-  hostChecker: {
-    name: "HostChecker",
-    chineseName: "主机巡检",
-    tagline: "一个把 SSH / TCP 健康检查做成持续流水线的基础设施巡检系统",
+  trm: {
+    name: "TRM",
+    chineseName: "云原生智能研运平台",
+    tagline: "面向 Kubernetes 多集群、边缘云、AIOps 与 FinOps 场景的云原生平台",
     summary:
-      "我没有把巡检停留在手动登录服务器敲命令，而是把它做成“发现—探测—采集—告警—观察”的持续流水线：定时调度自动发现主机清单，并发执行 TCP / SSH 探测，结果写入 InfluxDB，异常自动触发告警并沉淀到看板。",
-    repo: "https://github.com/AlexLi-Dev/host-checker",
-    caseStudy: "/hostchecker/",
-    dashboard: t2i(
-      "dark monitoring dashboard web UI screenshot, infrastructure host health status panels, SSH and TCP check results table, green and red status indicators, line charts and uptime metrics, Grafana style data visualization, high fidelity interface mockup, widescreen",
-      "landscape_16_9"
-    ),
-    activeStep: 1,
-    loop: ["Discover", "Probe", "Collect", "Alert", "Observe"],
+      "我没有把它做成单一集群的管理界面，而是围绕“多集群接入—统一管控—智能运维—成本治理”构建研运一体化平台：覆盖集群与节点管理、智驾边缘云、应用工作负载、CICD、AIOps、FinOps、告警中心与系统设置九大模块。",
+    repo: "https://github.com/AlexLi-Dev/Trm",
+    caseStudy: "/trm/",
+    logo: "/trm/logo.svg",
+    console:
+      "https://raw.githubusercontent.com/AlexLi-Dev/Trm/main/does/img.png",
+    consoleSecondary:
+      "https://raw.githubusercontent.com/AlexLi-Dev/Trm/main/does/img_1.png",
+    architecture: "/trm/architecture.svg",
+    activeStep: 3,
+    loop: ["多集群接入", "工作负载", "CICD", "AIOps", "FinOps"],
     facts: [
-      { value: "24/7", label: "持续自动巡检" },
-      { value: "TCP/SSH", label: "双协议探测" },
-      { value: "4", label: "核心流水线阶段" },
+      { value: "9", label: "平台功能模块" },
+      { value: "多集群", label: "K8s / 边缘云统一管控" },
+      { value: "Go+Vue3", label: "前后端核心技术栈" },
     ],
     capabilities: [
       {
         index: "01",
-        title: "Scheduling & Discovery",
+        title: "多集群与边缘云",
         description:
-          "定时调度器驱动，从主机清单自动同步发现目标，新增与下线节点无需手工介入巡检任务。",
+          "集群总览、添加集群、健康巡检与版本升级；节点列表、节点池、节点维护；边缘站点、设备接入与边缘网络统一纳管。",
       },
       {
         index: "02",
-        title: "TCP / SSH Probe",
+        title: "工作负载与 GitOps",
         description:
-          "并发执行端口连通性与 SSH 握手探测，配合超时、重试与并发预算，避免探测风暴和假阳性。",
+          "Deployment、Service / Ingress 统一管理，CI 对接 GitLab、CD 对接 Argo CD，配合流水线模板与制品管理。",
       },
       {
         index: "03",
-        title: "Metrics Pipeline",
+        title: "AIOps 智能运维",
         description:
-          "探测结果统一聚合并写入 InfluxDB，带主机、区域、协议标签，支撑历史趋势与容量判断。",
+          "可观测性、根因分析、自动治理与弹性垂直伸缩，让异常从被动响应走向主动发现和自动恢复。",
       },
       {
         index: "04",
-        title: "Alerting & Dashboard",
+        title: "FinOps 成本治理",
         description:
-          "异常按分级规则触发告警，Grafana 看板呈现可用性、探测延迟与失败分布，让状态一目了然。",
+          "成本总览、成本分摊、资源优化与预算告警，把资源用量与成本归属变成可度量、可管控的对象。",
       },
+    ],
+    modules: [
+      { title: "集群管理", detail: "集群总览、列出集群、添加集群、健康巡检、版本升级" },
+      { title: "节点管理", detail: "节点列表、节点池、节点维护" },
+      { title: "智驾边缘云", detail: "边缘站点、设备接入、边缘网络" },
+      { title: "应用工作负载", detail: "Deployment、Service / Ingress、GitOps 发布" },
+      { title: "CICD", detail: "CI / GitLab、CD / Argo CD、流水线模板、制品管理" },
+      { title: "AIOps 智能运维", detail: "可观测性、根因分析、自动治理、弹性垂直伸缩" },
+      { title: "FinOps 成本治理", detail: "成本总览、成本分摊、资源优化、预算告警" },
+      { title: "告警中心", detail: "告警规则、告警事件、通知渠道" },
+      { title: "系统设置", detail: "权限管理、审计日志、平台集成" },
+    ],
+    stack: [
+      { layer: "前端", items: "Vue 3 + TypeScript + Vite + Element Plus + ECharts" },
+      { layer: "后端", items: "Go + Gin + GORM + client-go" },
+      { layer: "数据", items: "PostgreSQL + Redis" },
+      { layer: "监控", items: "Prometheus + Grafana" },
+      { layer: "K8s 交互", items: "client-go + controller-runtime" },
+      { layer: "CI/CD", items: "GitLab CI + Argo CD" },
+      { layer: "消息", items: "RabbitMQ / Kafka" },
+      { layer: "权限", items: "Casbin + JWT" },
     ],
   },
   reliabilityPractice: [
@@ -140,44 +163,44 @@ export const siteConfig = {
     "正在探索 AI × SRE：用 Agent 辅助日志分析、故障定位与运维知识检索——Agent 提供语义判断，自动化脚本负责确定性执行，关键操作仍需人工确认与可观测证据。",
   projects: [
     {
-      name: "Kubernetes Lab",
-      eyebrow: "Cloud Native",
+      name: "front-scaffold",
+      eyebrow: "Frontend Engineering",
       description:
-        "集群部署、Service、Ingress、Calico、StatefulSet 与故障排查实践；具备 K8s 二次开发经验，理解 CRD、Operator、准入控制等核心机制。",
-      proof: "集群部署 · 网络策略 · Operator / CRD 实践",
-      link: "https://github.com/AlexLi-Dev/kubernetes-lab",
-      icon: "/logos/k8s.svg",
-      skills: ["K8s", "Calico", "Docker", "Operator"],
+        "基于 Vue 3 + Vite 的后台管理前端脚手架：登录认证、Mock API、受保护后台布局，以及用户、产品、订单三个基础管理模块。",
+      proof: "Pinia · Vue Router · vite-plugin-mock · Vitest · Docker + Nginx 部署",
+      link: "https://github.com/AlexLi-Dev/front-scaffold",
+      icon: "/logos/vue.svg",
+      skills: ["Vue 3", "Vite", "Element Plus", "Pinia", "Axios"],
     },
     {
-      name: "VPN Connectivity Checker",
-      eyebrow: "Network Engineering",
+      name: "ala-city",
+      eyebrow: "Backend Project",
       description:
-        "使用 Go 自动检测 OpenVPN 配置、连接状态与网络可达性，支持并发探测、超时重试与结果上报。",
-      proof: "Go 并发探测 · OpenVPN · 结果上报",
-      link: "https://github.com/AlexLi-Dev/vpn-checker",
-      icon: "/logos/vpn.svg",
-      skills: ["Go", "OpenVPN", "Network"],
+        "基于 Python / Django 的商城项目，包含 lufyy_api 后端服务、模板页面、管理脚本与 SQLite 数据。",
+      proof: "Python · Django · 商城业务",
+      link: "https://github.com/AlexLi-Dev/ala-city",
+      icon: "/logos/django.svg",
+      skills: ["Python", "Django", "SQLite"],
     },
     {
-      name: "Server Security Scanner",
-      eyebrow: "Security & Compliance",
+      name: "C-Note",
+      eyebrow: "Data Structures",
       description:
-        "服务器安全检查、Web 扫描与告警通知的自动化工具，集成 Webhook 与企业微信告警，覆盖基线核查与风险闭环。",
-      proof: "基线扫描 · Webhook 告警 · 风险闭环",
-      link: "https://github.com/AlexLi-Dev/security-scanner",
-      icon: "/logos/security.svg",
-      skills: ["Go", "Security", "Webhook"],
+        "使用 C++ 实现常见数据结构，包含顺序表大类等基础结构的定义与操作实现。",
+      proof: "C++ · 数据结构 · 顺序表",
+      link: "https://github.com/AlexLi-Dev/C-Note",
+      icon: "/logos/cpp.svg",
+      skills: ["C++", "Data Structures"],
     },
     {
-      name: "AI × SRE",
-      eyebrow: "Emerging Practice",
+      name: "C-",
+      eyebrow: "Practice",
       description:
-        "探索 AI Agent 如何辅助日志分析、故障定位、运维知识检索与自动化执行，让 AI 从“回答问题”走向参与真实 SRE 工作流。",
-      proof: "日志分析 · 故障定位 · 知识检索",
-      link: "https://github.com/AlexLi-Dev/ai-sre",
-      icon: "/logos/ai-sre.svg",
-      skills: ["AI", "Agent", "SRE"],
+        "C++ 基础语法与常见操作练习，在实践中巩固语言特性与常用操作。",
+      proof: "C++ · 基础练习",
+      link: "https://github.com/AlexLi-Dev/C-",
+      icon: "/logos/cpp-practice.svg",
+      skills: ["C++", "Practice"],
     },
   ],
   notes: {

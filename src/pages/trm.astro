@@ -1,0 +1,202 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config";
+
+const project = siteConfig.trm;
+const accent = siteConfig.accentColor;
+const activeStep = project.activeStep;
+---
+
+<BaseLayout
+  title="TRM Case Study - Alex Li"
+  description="TRM 云原生智能研运平台：Kubernetes 多集群、边缘云、AIOps、FinOps 的产品设计、系统架构与技术栈。"
+  canonicalPath="/trm/"
+  homePath="/"
+>
+  <section class="relative overflow-hidden px-8 pb-20 pt-32 sm:px-12 md:px-16 md:pb-28 md:pt-40 lg:px-24">
+    <div class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-45"></div>
+    <div class="absolute left-0 top-0 -z-10 h-full w-2/3 bg-gradient-to-r from-emerald-50/90 to-transparent"></div>
+    <div class="mx-auto max-w-7xl">
+      <a href="/#trm" class="text-sm font-semibold text-gray-600 hover:text-gray-900">← 返回首页</a>
+      <div class="mt-10 grid gap-12 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-8">
+          <div class="flex items-center gap-4">
+            <img src={project.logo} alt="TRM Logo" class="size-16 rounded-2xl object-cover sm:size-20" />
+            <div>
+              <p class="text-xs font-bold tracking-[0.18em] text-emerald-700">PRODUCT & ENGINEERING CASE STUDY</p>
+              <p class="mt-1 text-xs text-gray-500">Go + Gin · client-go · Vue 3</p>
+            </div>
+          </div>
+          <h1 class="mt-8 text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl md:text-8xl">{project.name}</h1>
+          <p class="mt-4 text-xl font-bold text-emerald-700 sm:text-2xl">{project.chineseName}</p>
+          <p class="mt-5 max-w-4xl text-base font-semibold leading-relaxed text-gray-700 sm:text-lg">{project.tagline}</p>
+          <p class="mt-5 max-w-4xl text-base leading-relaxed text-gray-600 sm:text-lg">{project.summary}</p>
+        </div>
+        <div class="lg:col-span-4 lg:text-right">
+          <a href={project.repo} target="_blank" rel="noopener noreferrer" class="inline-flex rounded-lg px-5 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg" style={{ backgroundColor: accent }}>查看公开源码 ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-8 pb-20 pt-0 sm:px-12 md:px-16 md:pb-28 lg:px-24">
+    <div class="mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gray-950 text-white">
+      <div class="grid lg:grid-cols-12">
+        <div class="p-8 sm:p-12 lg:col-span-5 lg:p-14">
+          <div class="flex items-center gap-3">
+            <span class="size-2 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.8)]"></span>
+            <p class="font-mono text-xs font-bold tracking-[0.18em] text-gray-400">REAL PLATFORM · GO + VUE 3</p>
+          </div>
+          <h2 class="mt-6 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">真实平台，<br />不是概念图。</h2>
+          <p class="mt-6 text-sm leading-relaxed text-gray-400 sm:text-base">集群总览与平台界面来自 TRM 的实际实现。运维同学可以在一个控制面中查看多集群健康状态、资源用量、工作负载与告警，无需在多个集群上下文之间反复切换。</p>
+
+          <div class="mt-9 space-y-3">
+            <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <p class="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-400">01 / MULTI-CLUSTER</p>
+              <p class="mt-2 text-sm text-gray-300">多集群总览、健康巡检与版本状态统一呈现。</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <p class="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-400">02 / WORKLOADS & CICD</p>
+              <p class="mt-2 text-sm text-gray-300">工作负载管理与 GitLab + Argo CD 发布流水线。</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <p class="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-400">03 / AIOps & FinOps</p>
+              <p class="mt-2 text-sm text-gray-300">根因分析、自动治理、成本分摊与预算告警。</p>
+            </div>
+          </div>
+
+          <p class="mt-8 text-xs leading-relaxed text-gray-600">截图来自仓库实际版本；界面仍在持续迭代。</p>
+        </div>
+
+        <div class="relative flex flex-col items-center justify-center gap-8 overflow-hidden border-t border-white/10 bg-[radial-gradient(circle_at_50%_30%,rgba(16,185,129,0.24),transparent_58%)] p-8 sm:p-12 lg:col-span-7 lg:border-l lg:border-t-0">
+          <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+          <figure class="relative z-10 w-full max-w-[620px]">
+            <div class="overflow-hidden rounded-xl border border-gray-800 shadow-[0_40px_100px_rgba(0,0,0,0.55)]">
+              <img src={project.console} alt="TRM 集群总览真实界面" class="block w-full" loading="lazy" />
+            </div>
+            <figcaption class="mt-4 text-center font-mono text-[10px] font-bold tracking-[0.14em] text-gray-500">CLUSTER CONSOLE · ACTUAL BUILD</figcaption>
+          </figure>
+          <figure class="relative z-10 w-full max-w-[620px]">
+            <div class="overflow-hidden rounded-xl border border-gray-800 shadow-[0_40px_100px_rgba(0,0,0,0.55)]">
+              <img src={project.consoleSecondary} alt="TRM 平台功能界面" class="block w-full" loading="lazy" />
+            </div>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-8 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-4">
+          <p class="section-kicker">01 / PRODUCT THESIS</p>
+          <h2 class="section-title">把分散的研运工作，<br />收敛到一个控制面</h2>
+          <div class="section-rule" style={{ backgroundColor: accent }}></div>
+        </div>
+        <div class="lg:col-span-8">
+          <p class="text-lg leading-relaxed text-gray-600 sm:text-xl md:text-2xl">多集群意味着上下文切换、配置漂移和观测割裂。TRM 用统一控制面纳管多集群与边缘云，把工作负载、流水线、智能运维和成本治理连成闭环，而不是一堆互相独立的运维工具。</p>
+          <div class="mt-10 grid grid-cols-5 gap-1 sm:gap-3">
+            {project.loop.map((step, index) => (
+              <div class="relative min-w-0">
+                <div
+                  class="flex h-20 items-center justify-center rounded-xl border px-1 text-center text-[10px] font-bold sm:text-sm"
+                  style={index === activeStep
+                    ? `border-color:${accent};background:${accent};color:#fff`
+                    : "border-color:#d1d5db;background:#fff;color:#374151"}
+                >{step}</div>
+                {index < project.loop.length - 1 && <span class="absolute -right-2 top-1/2 z-10 -translate-y-1/2 bg-white text-gray-400 sm:-right-3">→</span>}
+              </div>
+            ))}
+          </div>
+          <div class="mt-8 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl border border-gray-200 p-5"><p class="text-sm font-bold text-gray-900">统一管控</p><p class="mt-2 text-xs leading-relaxed text-gray-500">多集群与边缘云在同一控制面纳管，消除上下文割裂。</p></div>
+            <div class="rounded-2xl border border-gray-200 p-5"><p class="text-sm font-bold text-gray-900">智能驱动</p><p class="mt-2 text-xs leading-relaxed text-gray-500">可观测、根因分析与自动治理，让运维从被动走向主动。</p></div>
+            <div class="rounded-2xl border border-gray-200 p-5"><p class="text-sm font-bold text-gray-900">成本闭环</p><p class="mt-2 text-xs leading-relaxed text-gray-500">成本分摊、资源优化与预算告警，用量与归属可度量。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-gray-950 px-8 py-20 text-white sm:px-12 md:px-16 md:py-28 lg:px-24">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-xs font-bold tracking-[0.18em] text-emerald-400">02 / NINE PLATFORM MODULES</p>
+      <h2 class="mt-4 max-w-4xl text-3xl font-bold leading-tight sm:text-4xl md:text-6xl">九大模块，覆盖研运全链路。</h2>
+      <div class="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {project.modules.map((module, index) => (
+          <div class="rounded-2xl border border-gray-800 bg-gray-900 p-5">
+            <span class="font-mono text-xs text-emerald-400">{String(index + 1).padStart(2, "0")}</span>
+            <h3 class="mt-4 text-base font-bold text-white">{module.title}</h3>
+            <p class="mt-2 text-xs leading-relaxed text-gray-400">{module.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-8 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-4">
+          <p class="section-kicker">03 / ARCHITECTURE</p>
+          <h2 class="section-title">分层清晰的<br />平台架构</h2>
+          <div class="section-rule" style={{ backgroundColor: accent }}></div>
+          <p class="mt-6 max-w-sm text-sm leading-relaxed text-gray-500">前端控制面、Go 后端编排层、K8s 交互层与数据/监控基础设施分层解耦，各层通过明确接口协作。</p>
+        </div>
+        <div class="lg:col-span-8">
+          <div class="overflow-hidden rounded-3xl border border-gray-200 bg-white p-6 sm:p-10">
+            <img src={project.architecture} alt="TRM 平台架构图" class="mx-auto block w-full max-w-3xl" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell pt-0">
+    <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4">
+        <p class="section-kicker">04 / TECH STACK</p>
+        <h2 class="section-title">技术栈</h2>
+        <div class="section-rule" style={{ backgroundColor: accent }}></div>
+      </div>
+      <div class="lg:col-span-8">
+        <div class="grid gap-px overflow-hidden rounded-3xl border border-gray-200 bg-gray-200 sm:grid-cols-2">
+          {project.stack.map((entry) => (
+            <div class="bg-white p-5">
+              <p class="font-mono text-[10px] font-bold tracking-[0.16em] text-emerald-700">{entry.layer}</p>
+              <p class="mt-2 text-sm font-semibold leading-relaxed text-gray-900">{entry.items}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell pt-0">
+    <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4">
+        <p class="section-kicker">05 / ENGINEERING BOUNDARIES</p>
+        <h2 class="section-title">它不声称什么</h2>
+        <div class="section-rule" style={{ backgroundColor: accent }}></div>
+      </div>
+      <div class="space-y-3 lg:col-span-8">
+        <div class="rounded-2xl border border-gray-200 bg-white p-6"><h3 class="text-sm font-bold text-gray-900">平台纳管不等于集群零故障</h3><p class="mt-2 text-sm leading-relaxed text-gray-600">统一控制面降低管理成本，但不替代集群自身的稳定性建设与故障演练。</p></div>
+        <div class="rounded-2xl border border-gray-200 bg-white p-6"><h3 class="text-sm font-bold text-gray-900">根因分析不等于自动恢复一切</h3><p class="mt-2 text-sm leading-relaxed text-gray-600">AIOps 可以加速定位和部分自动治理，复杂故障仍需人工判断与介入。</p></div>
+        <div class="rounded-2xl border border-gray-200 bg-white p-6"><h3 class="text-sm font-bold text-gray-900">成本可见不等于浪费消失</h3><p class="mt-2 text-sm leading-relaxed text-gray-600">FinOps 提供分摊、优化建议与预算告警，资源决策仍需要业务取舍。</p></div>
+        <div class="rounded-2xl border border-gray-200 bg-white p-6"><h3 class="text-sm font-bold text-gray-900">自动化发布不替代变更评审</h3><p class="mt-2 text-sm leading-relaxed text-gray-600">流水线扩大交付效率，变更仍需质量门禁、灰度与可回滚路径。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-8 pb-24 pt-8 sm:px-12 md:px-16 md:pb-32 lg:px-24">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-8 rounded-3xl p-8 text-white sm:p-12 md:flex-row md:items-end" style={{ backgroundColor: accent }}>
+      <div>
+        <p class="text-xs font-bold tracking-[0.18em] text-emerald-100">OPEN ENGINEERING ARTIFACT</p>
+        <h2 class="mt-4 max-w-3xl text-3xl font-bold sm:text-4xl">代码、架构图与平台实现都在公开仓库中。</h2>
+        <p class="mt-4 max-w-2xl text-sm leading-relaxed text-emerald-100">平台持续迭代中，欢迎在仓库中查看完整实现。</p>
+      </div>
+      <a href={project.repo} target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-lg bg-white px-5 py-3 text-sm font-bold text-emerald-700 transition-transform hover:-translate-y-0.5">查看 GitHub ↗</a>
+    </div>
+  </section>
+</BaseLayout>

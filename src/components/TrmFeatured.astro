@@ -1,11 +1,11 @@
 ---
 import { siteConfig } from "../config";
-const project = siteConfig.hostChecker;
+const project = siteConfig.trm;
 const accent = siteConfig.accentColor;
 const activeStep = project.activeStep;
 ---
 
-<section id="hostchecker" class="section-shell">
+<section id="trm" class="section-shell">
   <div class="relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-7 sm:p-10 md:p-14 lg:p-16">
     <div
       class="absolute -right-36 -top-36 -z-0 size-96 rounded-full"
@@ -15,18 +15,19 @@ const activeStep = project.activeStep;
     <div class="relative z-10 grid gap-10 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-5">
         <div class="flex items-center gap-4">
-          <img src="/hostchecker/logo.svg" alt="HostChecker Logo" class="size-16 rounded-2xl object-cover sm:size-20" />
+          <img src={project.logo} alt="TRM Logo" class="size-16 rounded-2xl object-cover sm:size-20" />
           <div>
-            <p class="font-mono text-xs font-bold tracking-[0.18em]" style={{ color: accent }}>FEATURED RELIABILITY SYSTEM</p>
-            <p class="mt-1 text-xs text-gray-500">Continuous pipeline · Public source</p>
+            <p class="font-mono text-xs font-bold tracking-[0.18em]" style={{ color: accent }}>FEATURED CLOUD PLATFORM</p>
+            <p class="mt-1 text-xs text-gray-500">Multi-cluster · AIOps · FinOps</p>
           </div>
         </div>
 
         <h2 class="mt-7 text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
-          {project.chineseName} <span class="text-gray-400">/</span> {project.name}
+          {project.name}
         </h2>
-        <p class="mt-4 text-lg font-semibold leading-relaxed" style={{ color: accent }}>{project.tagline}</p>
-        <p class="mt-6 text-base leading-relaxed text-gray-600 sm:text-lg">{project.summary}</p>
+        <p class="mt-3 text-lg font-bold" style={{ color: accent }}>{project.chineseName}</p>
+        <p class="mt-4 text-base font-semibold leading-relaxed text-gray-700">{project.tagline}</p>
+        <p class="mt-5 text-base leading-relaxed text-gray-600 sm:text-lg">{project.summary}</p>
 
         <div class="mt-8 flex flex-wrap gap-3">
           <a href={project.caseStudy} class="inline-flex items-center rounded-lg px-5 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg" style={{ backgroundColor: accent }}>
@@ -42,7 +43,7 @@ const activeStep = project.activeStep;
         <div class="grid gap-5 sm:grid-cols-[minmax(0,1fr)_250px] lg:grid-cols-[minmax(0,1fr)_270px]">
           <div>
             <div class="rounded-2xl border border-gray-200 bg-gray-50 p-5 sm:p-7">
-              <p class="text-xs font-bold tracking-[0.18em] text-gray-500">INSPECTION PIPELINE</p>
+              <p class="text-xs font-bold tracking-[0.18em] text-gray-500">研运闭环</p>
               <div class="mt-5 space-y-2">
                 {project.loop.map((step, index) => {
                   const isCore = index === activeStep;
@@ -72,7 +73,7 @@ const activeStep = project.activeStep;
                   );
                 })}
               </div>
-              <p class="mt-4 text-xs leading-relaxed text-gray-500">主机清单自动同步；探测带超时、重试与并发预算，异常自动告警，结果可追溯到具体主机与时间。</p>
+              <p class="mt-4 text-xs leading-relaxed text-gray-500">多集群统一接入，工作负载与 CICD 流水线化交付，AIOps 负责智能运维，FinOps 完成成本闭环。</p>
             </div>
 
             <div class="mt-4 space-y-2">
@@ -93,24 +94,24 @@ const activeStep = project.activeStep;
                   <span class="size-2 rounded-full bg-red-400"></span>
                   <span class="size-2 rounded-full bg-yellow-400"></span>
                   <span class="size-2 rounded-full bg-green-400"></span>
-                  <span class="ml-2 flex-1 truncate rounded-full bg-gray-800 px-2 py-0.5 font-mono text-[8px] text-gray-400">ops.example.com/hosts</span>
+                  <span class="ml-2 flex-1 truncate rounded-full bg-gray-800 px-2 py-0.5 font-mono text-[8px] text-gray-400">trm.cloud/console</span>
                 </div>
                 <img
-                  src={project.dashboard}
-                  alt="HostChecker 监控看板真实运行界面"
+                  src={project.console}
+                  alt="TRM 云原生平台集群总览真实界面"
                   class="block w-full bg-[#0b1220]"
                   loading="lazy"
                 />
               </div>
-              <figcaption class="mt-3 text-center font-mono text-[10px] font-bold tracking-[0.14em] text-gray-400">LIVE DASHBOARD · INFLUXDB</figcaption>
+              <figcaption class="mt-3 text-center font-mono text-[10px] font-bold tracking-[0.14em] text-gray-400">TRM CONSOLE · CLUSTER OVERVIEW</figcaption>
             </figure>
 
-            <div class="mt-4 rounded-2xl border border-gray-200 bg-white p-4">
+            <div class="mt-4 rounded-2xl interface-note border border-gray-200 bg-white p-4">
               <p class="flex items-center gap-2 font-mono text-[10px] font-bold tracking-[0.16em] text-gray-500">
                 <span class="size-2 rounded-full" style={{ backgroundColor: accent }}></span>
-                LIVE MONITORING
+                REAL PLATFORM UI
               </p>
-              <p class="mt-2 text-xs leading-relaxed text-gray-500">真实运行看板：主机可用性、探测延迟、失败分布与告警状态。</p>
+              <p class="mt-2 text-xs leading-relaxed text-gray-500">真实平台界面：集群总览、健康状态、资源用量与告警入口。</p>
             </div>
           </div>
         </div>

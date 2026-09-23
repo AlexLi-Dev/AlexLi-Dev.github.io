@@ -1,0 +1,16 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="trmbg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(96 16) rotate(139) scale(160 130)">
+      <stop stop-color="#1239A3"/>
+      <stop offset="0.5" stop-color="#07143F"/>
+      <stop offset="1" stop-color="#02030B"/>
+    </radialGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#050814"/>
+  <rect width="128" height="128" rx="28" fill="url(#trmbg)" opacity="0.9"/>
+  <g transform="translate(37.4 3.5) scale(0.72)">
+    <rect x="28" y="0" width="54" height="96" rx="7" transform="rotate(45 28 0)" fill="#FFB020"/>
+    <rect x="0" y="62" width="54" height="96" rx="7" transform="rotate(-45 0 62)" fill="#2F6BFF"/>
+    <rect x="76" y="62" width="54" height="96" rx="7" transform="rotate(45 76 62)" fill="#27D6B6"/>
+  </g>
+</svg>

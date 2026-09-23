@@ -76,6 +76,13 @@ const accent = siteConfig.accentColor;
 
       <section>
         <h2 class="resume-h2">项目经历</h2>
+        <div class="resume-item">
+          <div class="resume-item-head">
+            <h3>{siteConfig.trm.name}（旗舰项目 · {siteConfig.trm.chineseName}）</h3>
+            <span class="resume-tags">{siteConfig.trm.loop.join(" · ")}</span>
+          </div>
+          <p class="resume-text">{siteConfig.trm.summary}</p>
+        </div>
         {siteConfig.projects.map((project) => (
           <div class="resume-item">
             <div class="resume-item-head">
@@ -85,13 +92,6 @@ const accent = siteConfig.accentColor;
             <p class="resume-text">{project.description}</p>
           </div>
         ))}
-        <div class="resume-item">
-          <div class="resume-item-head">
-            <h3>{siteConfig.hostChecker.name}（旗舰项目）</h3>
-            <span class="resume-tags">{siteConfig.hostChecker.loop.join(" · ")}</span>
-          </div>
-          <p class="resume-text">{siteConfig.hostChecker.summary}</p>
-        </div>
       </section>
     </article>
 

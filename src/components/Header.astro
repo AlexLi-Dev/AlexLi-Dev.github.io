@@ -1,0 +1,97 @@
+---
+import { siteConfig } from "../config";
+
+interface Props {
+  homePath?: string;
+}
+
+const { homePath = "" } = Astro.props;
+const href = (hash: string) => `${homePath}${hash}`;
+const links = [
+  { label: "关于", href: href("#about") },
+  { label: "主机巡检", href: href("#hostchecker") },
+  { label: "工程实践", href: href("#practice") },
+  { label: "项目", href: href("#projects") },
+  { label: "经历", href: href("#experience") },
+  { label: "影像", href: href("#gallery") },
+];
+---
+
+<header class="absolute inset-x-0 top-0 z-50">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8 md:py-4">
+    <a
+      href={homePath || "#hero"}
+      class="font-bold text-gray-900 md:hidden"
+      aria-label={`${siteConfig.name}首页`}
+    >
+      {siteConfig.name}
+    </a>
+
+    <ul class="hidden w-full items-center justify-center gap-7 lg:gap-8 md:flex">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="font-medium text-gray-700 transition-colors hover:text-black">
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href={siteConfig.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full border border-gray-300 bg-white/80 px-4 py-1.5 font-medium text-gray-800 transition-all hover:-translate-y-0.5 hover:border-gray-500"
+        >
+          GitHub
+        </a>
+      </li>
+    </ul>
+
+    <button
+      id="mobile-menu-button"
+      type="button"
+      class="inline-flex size-10 items-center justify-center rounded-full border border-gray-300 bg-white/90 text-gray-800 md:hidden"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="打开导航菜单"
+    >
+      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+      </svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="mx-4 hidden rounded-2xl border border-gray-200 bg-white/95 p-3 shadow-xl backdrop-blur md:hidden">
+    <div class="grid grid-cols-2 gap-1">
+      {links.map((link) => (
+        <a href={link.href} class="rounded-xl px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100">
+          {link.label}
+        </a>
+      ))}
+      <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" class="rounded-xl px-4 py-3 text-sm font-semibold text-white" style={{ backgroundColor: siteConfig.accentColor }}>
+        GitHub 主页 ↗
+      </a>
+      <a href={`mailto:${siteConfig.social.email}`} class="rounded-xl px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100">
+        联系我
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const button = document.getElementById("mobile-menu-button");
+  const menu = document.getElementById("mobile-menu");
+
+  button?.addEventListener("click", () => {
+    const isOpen = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!isOpen));
+    menu?.classList.toggle("hidden", isOpen);
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      button?.setAttribute("aria-expanded", "false");
+    });
+  });
+</script>

@@ -1,0 +1,27 @@
+---
+import { siteConfig } from "../config";
+---
+
+{siteConfig.education.length > 0 && (
+  <section id="education" class="section-shell">
+    <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4">
+        <p class="section-kicker">EDUCATION</p>
+        <h2 class="section-title">教育</h2>
+        <div class="section-rule" style={{ backgroundColor: siteConfig.accentColor }}></div>
+      </div>
+
+      <div class="space-y-5 lg:col-span-8">
+        {siteConfig.education.map((education) => (
+          <article class="flex flex-col justify-between gap-4 rounded-2xl border border-gray-200 bg-white p-6 sm:flex-row sm:items-start sm:p-8">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">{education.degree}</h3>
+              <p class="mt-2 text-base font-semibold" style={{ color: siteConfig.accentColor }}>{education.school}</p>
+            </div>
+            <span class="text-xs text-gray-500">{education.dateRange}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,0 +1,578 @@
+---
+interface Item {
+  image: string;
+  label: string;
+  alt?: string;
+  link?: string;
+}
+
+interface Props {
+  items: Item[];
+  defaultIndex?: number;
+  height?: number;
+  gap?: number;
+  radius?: number;
+  expandRatio?: number;
+  tilt?: number;
+  parallax?: number;
+  stagger?: number;
+  duration?: number;
+  grayscale?: boolean;
+  showLabels?: boolean;
+  accentColor?: string;
+  overlayColor?: string;
+  textColor?: string;
+}
+
+const {
+  items,
+  defaultIndex = 0,
+  height = 460,
+  gap = 10,
+  radius = 16,
+  expandRatio = 0.52,
+  tilt = 8,
+  parallax = 0.5,
+  stagger = 0.06,
+  duration = 0.6,
+  grayscale = true,
+  showLabels = true,
+  accentColor = "#ffffff",
+  overlayColor = "#0a0713",
+  textColor = "#ffffff",
+} = Astro.props;
+
+const count = items.length;
+const initial = Math.min(Math.max(defaultIndex, 0), count - 1);
+const groups = Array.from(
+  items.reduce<Map<string, Item[]>>((result, item) => {
+    const group = result.get(item.label) || [];
+    group.push(item);
+    result.set(item.label, group);
+    return result;
+  }, new Map())
+);
+---
+
+<div
+  class="ag-root"
+  data-ag
+  data-active={initial}
+  data-expand={expandRatio}
+  data-tilt={tilt}
+  data-parallax={parallax}
+  data-stagger={stagger}
+  data-duration={duration}
+  data-grayscale={grayscale}
+  data-labels={showLabels}
+  style={`gap: ${gap}px; height: ${height}px; --ag-accent: ${accentColor}; --ag-overlay: ${overlayColor}; --ag-text: ${textColor}`}
+  role="list"
+  aria-label="基础设施影像画廊"
+>
+  {items.map((item, i) => {
+    const Tag = item.link ? "a" : "div";
+    return (
+      <Tag
+        class="ag-panel"
+        data-panel
+        href={item.link || undefined}
+        role="listitem"
+        tabindex={0}
+        aria-current={i === initial ? "true" : "false"}
+        aria-label={item.label}
+        style={`border-radius: ${radius}px`}
+      >
+        <span class="ag-media-wrap">
+          <span class="ag-media" data-media>
+            <img src={item.image} alt={item.alt || item.label} draggable="false" loading="lazy" decoding="async" />
+          </span>
+          <span class="ag-overlay"></span>
+        </span>
+        {
+          showLabels && (
+            <span class="ag-label">
+              <span class="ag-bar" data-bar></span>
+              <span class="ag-text" data-text>{item.label}</span>
+            </span>
+          )
+        }
+      </Tag>
+    );
+  })}
+</div>
+
+<div
+  class="ag-mobile"
+  data-ag-mobile
+  style={`--ag-accent: ${accentColor}; --ag-overlay: ${overlayColor}; --ag-text: ${textColor}`}
+  aria-label="移动端影像画廊"
+>
+  {
+    groups.map(([label, groupItems]) => (
+      <section class="ag-mobile-group" aria-labelledby={`ag-mobile-${label}`}>
+        <div class="ag-mobile-heading">
+          <h3 id={`ag-mobile-${label}`}>{label}</h3>
+          <span aria-hidden="true">{String(groupItems.length).padStart(2, "0")} 张</span>
+        </div>
+
+        <div class="ag-mobile-track" role="group" aria-label={`${label}作品`}>
+          {groupItems.map((item, index) => (
+            <button
+              class="ag-mobile-card"
+              type="button"
+              data-ag-open
+              data-image={item.image}
+              data-alt={item.alt || item.label}
+              data-caption={`${label} · ${String(index + 1).padStart(2, "0")}`}
+              aria-label={`查看${label}第 ${index + 1} 张大图`}
+              style={`border-radius: ${radius}px`}
+            >
+              <img src={item.image} alt={item.alt || item.label} draggable="false" loading="lazy" decoding="async" />
+              <span class="ag-mobile-shade"></span>
+              <span class="ag-mobile-index" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")} / {String(groupItems.length).padStart(2, "0")}
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <dialog class="ag-dialog" data-ag-dialog aria-label="影像作品大图">
+    <button class="ag-dialog-close" type="button" data-ag-close aria-label="关闭大图">×</button>
+    <figure>
+      <img data-ag-dialog-image alt="" />
+      <figcaption data-ag-dialog-caption></figcaption>
+    </figure>
+  </dialog>
+</div>
+
+<style>
+  .ag-root {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    perspective: 1400px;
+  }
+
+  .ag-panel {
+    position: relative;
+    display: block;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    cursor: pointer;
+    background: #0a0713;
+    outline: none;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.8);
+    will-change: flex-grow, transform;
+  }
+
+  .ag-panel:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--ag-accent),
+      0 10px 30px -18px rgba(0, 0, 0, 0.8);
+  }
+
+  .ag-media-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .ag-media {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--ag-media-size, 320px);
+    height: 100%;
+    transform: translate(-50%, -50%);
+    filter: grayscale(var(--ag-gray, 1));
+    will-change: transform, filter;
+  }
+
+  .ag-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .ag-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        180deg,
+        transparent 45%,
+        color-mix(in srgb, var(--ag-overlay) 78%, transparent) 100%
+      ),
+      color-mix(in srgb, var(--ag-overlay) calc(var(--ag-dim, 0.35) * 100%), transparent);
+  }
+
+  .ag-label {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index:2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: none;
+  }
+
+  .ag-bar {
+    flex: none;
+    width: 3px;
+    height: 26px;
+    border-radius: 3px;
+    background: var(--ag-accent);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--ag-accent) 60%, transparent);
+    opacity: 0;
+  }
+
+  .ag-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: clamp(1rem, 1.4vw, 1.4rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--ag-text);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+    opacity: 0;
+  }
+
+  .ag-mobile {
+    display: none;
+  }
+
+  .ag-dialog {
+    width: min(960px, calc(100vw - 24px));
+    max-width: none;
+    max-height: calc(100dvh - 24px);
+    margin: auto;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  .ag-dialog::backdrop {
+    background: rgba(7, 6, 12, 0.88);
+    backdrop-filter: blur(10px);
+  }
+
+  .ag-dialog figure {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    background: #090711;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+  }
+
+  .ag-dialog img {
+    display: block;
+    width: 100%;
+    max-height: calc(100dvh - 72px);
+    object-fit: contain;
+  }
+
+  .ag-dialog figcaption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 36px 18px 16px;
+    color: white;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    background: linear-gradient(transparent, rgba(7, 6, 12, 0.86));
+  }
+
+  .ag-dialog-close {
+    position: absolute;
+    z-index: 2;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 999px;
+    color: white;
+    font-size: 1.65rem;
+    line-height: 1;
+    background: rgba(7, 6, 12, 0.7);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+  }
+
+  .ag-dialog-close:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 520px) {
+    .ag-root {
+      display: none;
+    }
+
+    .ag-mobile {
+      display: grid;
+      gap: 26px;
+    }
+
+    .ag-mobile-group {
+      min-width: 0;
+    }
+
+    .ag-mobile-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .ag-mobile-heading h3 {
+      margin: 0;
+      color: #111827;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .ag-mobile-heading span {
+      color: #9ca3af;
+      font-size: 0.72rem;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.08em;
+    }
+
+    .ag-mobile-track {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .ag-mobile-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ag-mobile-card {
+      position: relative;
+      flex: 0 0 82%;
+      aspect-ratio: 4 / 3;
+      padding: 0;
+      overflow: hidden;
+      scroll-snap-align: start;
+      border: 0;
+      color: white;
+      background: #0a0713;
+      box-shadow: 0 14px 32px -22px rgba(0, 0, 0, 0.9);
+      cursor: zoom-in;
+    }
+
+    .ag-mobile-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 240ms ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .ag-mobile-card:active img {
+      transform: scale(0.985);
+    }
+
+    .ag-mobile-card:focus-visible {
+      outline: 2px solid var(--ag-accent);
+      outline-offset: -4px;
+    }
+
+    .ag-mobile-shade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 58%, rgba(7, 6, 12, 0.66));
+    }
+
+    .ag-mobile-index {
+      position: absolute;
+      right: 14px;
+      bottom: 12px;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.68rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.12em;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  document.querySelectorAll<HTMLElement>("[data-ag]").forEach((root) => {
+    const panels = Array.from(root.querySelectorAll<HTMLElement>("[data-panel]"));
+    const mediaEls = panels.map((p) => p.querySelector<HTMLElement>("[data-media]"));
+    const bars = panels.map((p) => p.querySelector<HTMLElement>("[data-bar]"));
+    const texts = panels.map((p) => p.querySelector<HTMLElement>("[data-text]"));
+    const count = panels.length;
+    if (!count) return;
+
+    const expandRatio = parseFloat(root.dataset.expand || "0.52");
+    const tilt = parseFloat(root.dataset.tilt || "8");
+    const parallax = parseFloat(root.dataset.parallax || "0.5");
+    const stagger = parseFloat(root.dataset.stagger || "0.06");
+    const duration = parseFloat(root.dataset.duration || "0.6");
+    const ease = "power3.out";
+    const grayscale = (root.dataset.grayscale || "true") === "true";
+    const showLabels = (root.dataset.labels || "true") === "true";
+    const gap = parseFloat(getComputedStyle(root).gap || "10");
+
+    let active = parseInt(root.dataset.active || "0", 10);
+    let tl: ReturnType<typeof gsap.timeline> | null = null;
+    let mediaSize = 320;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function setActive(i: number) {
+      active = i;
+      root.dataset.active = String(i);
+      panels.forEach((p, idx) => p.setAttribute("aria-current", idx === i ? "true" : "false"));
+      applyLayout(true);
+    }
+
+    function applyLayout(animate: boolean) {
+      tl && tl.kill();
+      const dur = animate && !reduced ? duration : 0;
+
+      if (root.clientWidth <= 520) {
+        panels.forEach((panel, i) => {
+          const media = mediaEls[i];
+          panel.style.transform = "none";
+          if (media) {
+            media.style.width = "100%";
+            media.style.height = "100%";
+            media.style.transform = "none";
+            media.style.filter = "grayscale(0)";
+          }
+          if (bars[i]) bars[i].style.opacity = "1";
+          if (texts[i]) texts[i].style.opacity = "1";
+        });
+        return;
+      }
+
+      const r = Math.min(Math.max(expandRatio, 0.2), 0.9);
+      const grow = count > 1 ? (r * (count - 1)) / (1 - r) : 1;
+      const nextTimeline = gsap.timeline();
+      tl = nextTimeline;
+
+      panels.forEach((panel, i) => {
+        const isActive = i === active;
+        const rot = isActive ? 0 : i < active ? -tilt : tilt;
+        nextTimeline.to(panel, { flexGrow: isActive ? grow : 1, rotateY: rot, duration: dur, ease }, 0);
+
+        const media = mediaEls[i];
+        if (media) {
+          const drift = Math.max(-1.5, Math.min(1.5, active - i));
+          const shift = drift * parallax * mediaSize * 0.06;
+          nextTimeline.to(
+            media,
+            {
+              xPercent: -50,
+              yPercent: -50,
+              x: isActive ? 0 : shift,
+              y: 0,
+              "--ag-gray": grayscale ? (isActive ? 0 : 1) : 0,
+              "--ag-dim": isActive ? 0 : 0.35,
+              duration: dur,
+              ease,
+            },
+            0
+          );
+        }
+
+        if (showLabels && bars[i] && texts[i]) {
+          if (isActive) {
+            nextTimeline.to([bars[i], texts[i]], { opacity: 1, x: 0, duration: dur, ease, stagger: reduced ? 0 : stagger }, 0);
+          } else {
+            nextTimeline.to([bars[i], texts[i]], { opacity: 0, x: -14, duration: dur * 0.6, ease }, 0);
+          }
+        }
+      });
+    }
+
+    function measure() {
+      const rect = root.getBoundingClientRect();
+      const usable = Math.max(rect.width - gap * (count - 1), 120);
+      const size = Math.max(140, usable * Math.min(Math.max(expandRatio, 0.2), 0.9) * 1.22);
+      mediaSize = size;
+      root.style.setProperty("--ag-media-size", `${size}px`);
+      applyLayout(false);
+    }
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(root);
+
+    panels.forEach((p, i) => {
+      p.addEventListener("mouseenter", () => active !== i && setActive(i));
+      p.addEventListener("click", (e) => {
+        if (active !== i) e.preventDefault();
+        setActive(i);
+      });
+      p.addEventListener("focus", () => setActive(i));
+      p.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+          e.preventDefault();
+          setActive((i + 1) % count);
+        } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+          e.preventDefault();
+          setActive((i - 1 + count) % count);
+        }
+      });
+    });
+
+    // 初始动画一次（跳过首帧测量时的静默布局）
+    requestAnimationFrame(() => applyLayout(true));
+  });
+
+  document.querySelectorAll<HTMLElement>("[data-ag-mobile]").forEach((root) => {
+    const dialog = root.querySelector<HTMLDialogElement>("[data-ag-dialog]");
+    const dialogImage = root.querySelector<HTMLImageElement>("[data-ag-dialog-image]");
+    const dialogCaption = root.querySelector<HTMLElement>("[data-ag-dialog-caption]");
+    const closeButton = root.querySelector<HTMLButtonElement>("[data-ag-close]");
+    if (!dialog || !dialogImage || !dialogCaption || !closeButton) return;
+
+    root.querySelectorAll<HTMLButtonElement>("[data-ag-open]").forEach((card) => {
+      card.addEventListener("click", () => {
+        dialogImage.src = card.dataset.image || "";
+        dialogImage.alt = card.dataset.alt || "影像作品";
+        dialogCaption.textContent = card.dataset.caption || "";
+        dialog.showModal();
+      });
+    });
+
+    closeButton.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+</script>

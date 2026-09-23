@@ -1,0 +1,34 @@
+---
+import { siteConfig } from "../config";
+
+interface Props {
+  homePath?: string;
+}
+const { homePath = "" } = Astro.props;
+---
+
+<footer class="relative border-t border-gray-200 bg-gray-50">
+  <div class="mx-auto max-w-7xl px-8 py-12 lg:px-24">
+    <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900">{siteConfig.name}</h2>
+        <p class="mt-2 text-sm text-gray-600">{siteConfig.title}</p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a href={`mailto:${siteConfig.social.email}`} class="rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:border-gray-500">邮件联系</a>
+          <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" class="rounded-full px-4 py-2 text-sm font-semibold text-white" style={{ backgroundColor: siteConfig.accentColor }}>GitHub 主页 ↗</a>
+        </div>
+      </div>
+
+      <div class="md:text-right">
+        <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600 md:justify-end">
+          <a href={`${homePath}#about`} class="hover:text-gray-900">关于</a>
+          <a href={`${homePath}#hostchecker`} class="hover:text-gray-900">主机巡检</a>
+          <a href={`${homePath}#projects`} class="hover:text-gray-900">项目</a>
+          <a href={`${homePath}#gallery`} class="hover:text-gray-900">影像</a>
+          <a href={`${homePath}resume/`} class="hover:text-gray-900">简历 / PDF</a>
+        </nav>
+        <p class="mt-4 text-xs text-gray-500">© {new Date().getFullYear()} {siteConfig.name}. Built with Astro.</p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,59 @@
+---
+import { siteConfig } from "../config";
+const accent = siteConfig.accentColor;
+---
+
+<section id="projects" class="section-shell">
+  <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <p class="section-kicker">SELECTED WORK</p>
+      <h2 class="section-title">其他项目</h2>
+      <div class="section-rule" style={{ backgroundColor: accent }}></div>
+      <p class="mt-6 max-w-sm text-sm leading-relaxed text-gray-500">围绕云原生、网络、安全与 AI × SRE 的工程实践，每个项目都从真实运维问题出发。</p>
+    </div>
+
+    <div class="space-y-5 lg:col-span-8">
+      {siteConfig.projects.map((project, index) => (
+        <article class:list={["group relative overflow-hidden rounded-2xl border p-6 transition-all hover:-translate-y-1 hover:shadow-xl sm:p-8", index === 0 ? "border-gray-800 bg-gray-900 sm:p-10" : "border-gray-200 bg-white"]}>
+          {index === 0 && (
+            <div
+              class="absolute -right-24 -top-28 size-72 rounded-full"
+              style={`background: radial-gradient(circle, ${accent}55 0%, transparent 70%)`}
+            ></div>
+          )}
+
+          <div class="relative z-10 flex items-start justify-between gap-4">
+            <div class="flex items-start gap-5 sm:gap-6">
+              {project.icon && (
+                <img
+                  src={project.icon}
+                  alt={`${project.name} Logo`}
+                  class:list={["size-16 shrink-0 rounded-2xl sm:size-20", index === 0 && "shadow-2xl ring-1 ring-white/15"]}
+                />
+              )}
+              <div>
+                <p
+                  class="text-xs font-bold tracking-[0.18em]"
+                  style={index === 0 ? "color:#9ca3af" : `color:${accent}`}
+                >{project.eyebrow}</p>
+                <h3 class:list={["mt-3 font-bold", index === 0 ? "text-3xl text-white sm:text-4xl" : "text-2xl text-gray-900 sm:text-3xl"]}>{project.name}</h3>
+              </div>
+            </div>
+            <span class:list={["font-mono text-sm", index === 0 ? "text-gray-600" : "text-gray-400"]}>{String(index + 1).padStart(2, "0")}</span>
+          </div>
+
+          <p class:list={["relative z-10 text-sm leading-relaxed sm:text-base", index === 0 ? "mt-8 max-w-3xl text-gray-300" : "mt-5 text-gray-600"]}>{project.description}</p>
+          <p class:list={["relative z-10 mt-5 text-sm font-semibold", index === 0 ? "text-white" : "text-gray-800"]}>{project.proof}</p>
+          <div class="relative z-10 mt-6 flex flex-wrap gap-2">
+            {project.skills.map((skill) => (
+              <span class:list={["rounded-md px-2.5 py-1 text-xs font-medium", index === 0 ? "bg-gray-800 text-gray-200" : "bg-gray-100 text-gray-700"]}>{skill}</span>
+            ))}
+          </div>
+          <div class="relative z-10 mt-7 text-sm font-semibold">
+            <a href={project.link} target="_blank" rel="noopener noreferrer" style={index === 0 ? "color:#fff" : `color:${accent}`} class="underline decoration-1 underline-offset-4">GitHub ↗</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

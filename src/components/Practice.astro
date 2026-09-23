@@ -1,0 +1,44 @@
+---
+import { siteConfig } from "../config";
+const accent = siteConfig.accentColor;
+---
+
+<section id="practice" class="section-shell">
+  <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <p class="section-kicker">PRODUCTION PRACTICE</p>
+      <h2 class="section-title">真实业务里的<br />可靠性工程</h2>
+      <div class="section-rule" style={{ backgroundColor: accent }}></div>
+      <p class="mt-6 max-w-sm text-sm leading-relaxed text-gray-500">个人项目证明我能从零搭建系统；在真实业务里，我把同样的工程判断带进生产环境的边界。</p>
+    </div>
+
+    <div class="space-y-4 lg:col-span-8">
+      {siteConfig.reliabilityPractice.map((practice, index) => (
+        <article class:list={["rounded-2xl border p-6 sm:p-8", index === 1 ? "border-gray-800 bg-gray-900 text-white" : "border-gray-200 bg-white"]}>
+          <div class="flex items-center justify-between gap-4">
+            <span
+              class="font-mono text-xs font-bold tracking-[0.18em]"
+              style={index === 1 ? "color:#9ca3af" : `color:${accent}`}
+            >{practice.eyebrow}</span>
+            <span class:list={["font-mono text-sm", index === 1 ? "text-gray-500" : "text-gray-400"]}>{practice.index}</span>
+          </div>
+          <h3 class:list={["mt-5 text-xl font-bold sm:text-2xl", index === 1 ? "text-white" : "text-gray-900"]}>{practice.title}</h3>
+          <p class:list={["mt-4 text-sm leading-relaxed sm:text-base", index === 1 ? "text-gray-300" : "text-gray-600"]}>{practice.description}</p>
+          <p
+            class="mt-6 border-l-2 pl-4 text-sm font-semibold"
+            style={index === 1
+              ? `border-color:${accent};color:#e5e7eb`
+              : `border-color:${accent};color:#374151`}
+          >{practice.outcome}</p>
+        </article>
+      ))}
+
+      <div class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-6 sm:p-8">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-start">
+          <span class="shrink-0 rounded-full bg-gray-900 px-3 py-1 font-mono text-xs font-bold text-white">AI × SRE</span>
+          <p class="text-sm leading-relaxed text-gray-600">{siteConfig.aiHarness}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

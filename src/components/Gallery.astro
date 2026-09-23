@@ -1,0 +1,41 @@
+---
+import { siteConfig } from "../config";
+import AccordionGallery from "./AccordionGallery.astro";
+const gallery = siteConfig.gallery;
+const accent = siteConfig.accentColor;
+---
+
+<section id="gallery" class="p-8 sm:p-12 md:p-16 lg:p-24">
+  <div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      <div class="lg:col-span-4">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+          基础设施影像
+        </h2>
+        <div class="w-[75px] h-[5px] mt-2 rounded-full" style={`background-color: ${accent}`} />
+      </div>
+
+      <div class="lg:col-span-8">
+        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600">{gallery.intro}</p>
+      </div>
+    </div>
+
+    <div class="mt-10 lg:mt-16 space-y-8">
+      <AccordionGallery items={gallery.images} defaultIndex={5} expandRatio={0.45} />
+
+      <div class="relative overflow-hidden rounded-2xl border border-gray-200">
+        <img
+          src={gallery.highlight.image}
+          alt={gallery.highlight.label}
+          class="w-full h-72 sm:h-96 object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-7">
+          <p class="text-lg sm:text-2xl font-semibold text-white">{gallery.highlight.label}</p>
+          <p class="mt-1.5 text-sm sm:text-base text-white/85">{gallery.highlight.caption}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

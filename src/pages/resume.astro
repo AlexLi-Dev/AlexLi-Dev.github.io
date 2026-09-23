@@ -1,0 +1,306 @@
+---
+import { siteConfig } from "../config";
+import "../styles/global.css";
+
+const pageTitle = `${siteConfig.name}｜SRE / Go 工程师简历`;
+const accent = siteConfig.accentColor;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={`${siteConfig.name}的 SRE / Go 工程师公开简历`} />
+    <link rel="canonical" href={`${siteConfig.siteUrl}/resume/`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="bg-gray-200">
+    <div class="resume-toolbar no-print">
+      <button type="button" id="print-button" class="print-btn">打印 / 另存为 PDF</button>
+      <a href="/" class="print-btn">← 返回网站</a>
+    </div>
+
+    <article class="resume-page">
+      <header class="resume-header">
+        <div>
+          <h1>{siteConfig.name}</h1>
+          <p class="resume-role">{siteConfig.title} · 2 年经验</p>
+        </div>
+        <ul class="resume-contact">
+          <li><a href={`mailto:${siteConfig.social.email}`}>{siteConfig.social.email}</a></li>
+          <li><a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer">{siteConfig.social.github}</a></li>
+        </ul>
+      </header>
+
+      <section>
+        <h2 class="resume-h2">个人简介</h2>
+        <p class="resume-text">{siteConfig.about[0]}</p>
+      </section>
+
+      <section>
+        <h2 class="resume-h2">核心技能</h2>
+        <div class="resume-skill-grid">
+          {siteConfig.capabilityGroups.map((group) => (
+            <div class="resume-skill-row">
+              <span class="resume-skill-name">{group.name}</span>
+              <span class="resume-skill-values">{group.skills.join(" · ")}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 class="resume-h2">工作经历</h2>
+        {siteConfig.experience.map((experience) => (
+          <div class="resume-item">
+            <div class="resume-item-head">
+              <h3>{experience.title}</h3>
+              <span class="resume-company" style={`color:${accent}`}>{experience.company}</span>
+            </div>
+            <ul class="resume-bullets">
+              {experience.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
+
+      <section>
+        <h2 class="resume-h2">项目经历</h2>
+        {siteConfig.projects.map((project) => (
+          <div class="resume-item">
+            <div class="resume-item-head">
+              <h3>{project.name}</h3>
+              <span class="resume-tags">{project.skills.join(" · ")}</span>
+            </div>
+            <p class="resume-text">{project.description}</p>
+          </div>
+        ))}
+        <div class="resume-item">
+          <div class="resume-item-head">
+            <h3>{siteConfig.hostChecker.name}（旗舰项目）</h3>
+            <span class="resume-tags">{siteConfig.hostChecker.loop.join(" · ")}</span>
+          </div>
+          <p class="resume-text">{siteConfig.hostChecker.summary}</p>
+        </div>
+      </section>
+    </article>
+
+    <script is:inline>
+      document
+        .getElementById("print-button")
+        ?.addEventListener("click", () => window.print());
+    </script>
+
+    <style>
+      .resume-toolbar {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        max-width: 820px;
+        margin: 16px auto 0;
+        padding: 0 16px;
+      }
+
+      .print-btn {
+        display: inline-block;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        background: #fff;
+        padding: 8px 14px;
+        color: #374151;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button.print-btn {
+        border-color: var(--accent, #047857);
+        background: #047857;
+        color: #fff;
+      }
+
+      .resume-page {
+        max-width: 820px;
+        margin: 12px auto 32px;
+        padding: 32px 36px;
+        background: #fff;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      }
+
+      .resume-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 14px;
+        border-bottom: 2px solid #111827;
+      }
+
+      .resume-header h1 {
+        margin: 0;
+        color: #111827;
+        font-size: 26px;
+        font-weight: 700;
+      }
+
+      .resume-role {
+        margin: 4px 0 0;
+        color: #374151;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .resume-contact {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: right;
+      }
+
+      .resume-contact li {
+        font-size: 11px;
+        line-height: 1.7;
+      }
+
+      .resume-contact a {
+        color: #4b5563;
+        text-decoration: none;
+      }
+
+      .resume-page section {
+        margin-top: 18px;
+      }
+
+      .resume-h2 {
+        margin: 0 0 8px;
+        color: #111827;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+
+      .resume-h2::after {
+        content: "";
+        display: block;
+        height: 1px;
+        margin-top: 4px;
+        background: #e5e7eb;
+      }
+
+      .resume-text {
+        margin: 0;
+        color: #374151;
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .resume-skill-grid {
+        display: grid;
+        gap: 5px;
+      }
+
+      .resume-skill-row {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        font-size: 11px;
+      }
+
+      .resume-skill-name {
+        flex: none;
+        width: 132px;
+        color: #111827;
+        font-weight: 700;
+      }
+
+      .resume-skill-values {
+        color: #4b5563;
+      }
+
+      .resume-item {
+        margin-bottom: 12px;
+      }
+
+      .resume-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .resume-item-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .resume-item-head h3 {
+        margin: 0;
+        color: #111827;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .resume-company {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .resume-tags {
+        flex: none;
+        color: #6b7280;
+        font-size: 10px;
+        text-align: right;
+      }
+
+      .resume-bullets {
+        margin: 5px 0 0;
+        padding-left: 16px;
+      }
+
+      .resume-bullets li {
+        color: #374151;
+        font-size: 11px;
+        line-height: 1.65;
+      }
+
+      @media (max-width: 640px) {
+        .resume-page {
+          padding: 24px 20px;
+        }
+
+        .resume-header {
+          flex-direction: column;
+        }
+
+        .resume-contact {
+          text-align: left;
+        }
+      }
+
+      @media print {
+        @page {
+          size: A4;
+          margin: 12mm;
+        }
+
+        body {
+          background: #fff;
+        }
+
+        .no-print {
+          display: none !important;
+        }
+
+        .resume-page {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </body>
+</html>

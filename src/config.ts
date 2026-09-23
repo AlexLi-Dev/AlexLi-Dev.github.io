@@ -7,7 +7,8 @@ const t2i = (prompt: string, image_size: string) =>
 
 export const siteConfig = {
   name: "Alex Li",
-  title: "SRE / Go 工程师",
+  title: "运维开发工程师",
+  jobObjective: "运维开发工程师",
   description:
     "Alex Li 的个人网站：运维开发工程师，专注 Go、Kubernetes、云原生基础设施、可观测性与自动化，把复杂系统变得稳定、可观测、可自动化。",
   siteUrl: "https://alexli-dev.github.io",
@@ -18,26 +19,57 @@ export const siteConfig = {
     github: "https://github.com/AlexLi-Dev",
   },
   about: [
-    "我是一名 SRE / Go 工程师，有 2 年运维开发经验。我关注的不只是服务能不能跑起来，更是系统为什么稳定、哪里会失败，以及如何让下一次故障不再重复发生。",
+    "我是一名运维开发工程师，有 2 年工作经验。我关注的不只是服务能不能跑起来，更是系统为什么稳定、哪里会失败，以及如何让下一次故障不再重复发生。",
     "Go 与云原生是我的底座：用 Gin / GoFrame 构建运维平台与自动化工具，管理 Kubernetes 集群与 CI/CD 流水线，也为 MySQL、Redis、Kafka、RabbitMQ 等中间件建立可观测的运行边界。",
     "我习惯先观察、再变更；把重复的事情自动化，把重要的事情度量出来，把一次排障的经验沉淀成工具、监控、告警或文档——让系统被看见，让失败有迹可循。",
   ],
   capabilityGroups: [
     {
-      name: "Cloud Native",
-      skills: ["Kubernetes", "Docker", "Helm", "Operator / CRD", "Calico"],
+      name: "编程语言与开发能力",
+      skills: ["Go", "Goroutine / Channel", "Gin", "GoFrame", "设计模式", "Shell"],
+      details: [
+        "深厚的 Go 开发与并发编程功底，深入理解 Slice、Map、Channel、Goroutine 底层实现原理，高效编写高并发、高性能后端服务。",
+        "熟练使用 Gin、GoFrame 框架开发 Web 服务与微服务，快速构建稳定后端。",
+        "熟练应用多种设计模式优化代码结构，提高可维护性、可扩展性与复用性。",
+        "具备 Shell 日常运维脚本开发能力，编写高效自动化运维脚本。",
+      ],
     },
     {
-      name: "Observability",
-      skills: ["Prometheus", "Grafana", "ELK", "Alerting", "Tracing"],
+      name: "容器编排与云原生",
+      skills: ["Kubernetes", "CRD / Operator", "Webhook", "RBAC", "K8s 二次开发", "Docker"],
+      details: [
+        "具备 Kubernetes 集群管理平台开发、容器编排与资源调度能力，深入理解 Pod 生命周期、调度策略、CRD、Operator、准入控制（Webhook）、RBAC 等核心机制。",
+        "具有 K8s 二次开发经验。",
+        "熟悉 Docker 容器技术，能够编写 Dockerfile 构建镜像，具备容器化服务部署与镜像仓库管理能力。",
+      ],
     },
     {
-      name: "Backend & Middleware",
-      skills: ["Go / Gin", "GoFrame", "MySQL", "Redis", "Kafka", "RabbitMQ"],
+      name: "IaC 与自动化运维",
+      skills: ["Ansible", "Terraform", "GitLab CI", "Jenkins", "ArgoCD", "Crossplane", "GitOps"],
+      details: [
+        "熟练使用 Ansible、Terraform 实现基础设施代码化、批量运维与多环境统一管理。",
+        "熟悉 GitLab CI 与 Jenkins 流水线建设，具备云原生 CI/CD 流程设计、质量门禁及自动化部署能力。",
+        "具备基于 GitLab + ArgoCD + Crossplane 的 GitOps 经验，实现云资源声明式定义与版本化管控。",
+      ],
     },
     {
-      name: "Automation & Infra",
-      skills: ["Terraform", "Ansible", "CI/CD", "Nginx", "HAProxy", "Keepalived"],
+      name: "可观测性体系建设",
+      skills: ["Prometheus", "Grafana", "Zabbix", "ELK", "eBPF", "Cilium Hubble", "Falco"],
+      details: [
+        "熟练配置与优化 Prometheus + Grafana 监控体系，具备 Zabbix 等传统监控使用经验，实现性能监控与故障预警。",
+        "熟练掌握 ELK（Elasticsearch + Logstash + Kibana）日志收集、存储、分析与可视化，支撑运维与故障排查。",
+        "了解 eBPF 技术生态，熟悉 Cilium Hubble 网络监控与 Falco 安全检测应用场景。",
+      ],
+    },
+    {
+      name: "中间件与基础设施",
+      skills: ["MySQL", "Redis", "Kafka", "RabbitMQ", "Nginx", "HAProxy", "Keepalived"],
+      details: [
+        "熟悉 MySQL 存储引擎、事务隔离级别、索引优化与慢查询分析，具备主从复制 / 读写分离等高可用方案落地经验。",
+        "熟悉 Redis 数据结构优化与缓存穿透 / 雪崩 / 击穿解决方案，了解哨兵 / Cluster 高可用架构与持久化机制。",
+        "掌握 RabbitMQ 与 Kafka 底层原理（分区 / 副本 / ISR / 消费组），能解决消息积压、重复消费、顺序消息等问题。",
+        "具备 Nginx、HAProxy、Keepalived 配置优化能力，可搭建高可用反向代理与负载均衡层。",
+      ],
     },
   ],
   hostChecker: {

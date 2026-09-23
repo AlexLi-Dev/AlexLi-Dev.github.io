@@ -26,7 +26,8 @@ const accent = siteConfig.accentColor;
       <header class="resume-header">
         <div>
           <h1>{siteConfig.name}</h1>
-          <p class="resume-role">{siteConfig.title} · 2 年经验</p>
+          <p class="resume-role">{siteConfig.title} · 2 年工作经验</p>
+          <p class="resume-objective">求职意向：{siteConfig.jobObjective}</p>
         </div>
         <ul class="resume-contact">
           <li><a href={`mailto:${siteConfig.social.email}`}>{siteConfig.social.email}</a></li>
@@ -43,9 +44,14 @@ const accent = siteConfig.accentColor;
         <h2 class="resume-h2">核心技能</h2>
         <div class="resume-skill-grid">
           {siteConfig.capabilityGroups.map((group) => (
-            <div class="resume-skill-row">
-              <span class="resume-skill-name">{group.name}</span>
-              <span class="resume-skill-values">{group.skills.join(" · ")}</span>
+            <div class="resume-skill-block">
+              <h3 class="resume-skill-name">{group.name}</h3>
+              <ul class="resume-skill-details">
+                {group.details.map((detail) => (
+                  <li>{detail}</li>
+                ))}
+              </ul>
+              <p class="resume-skill-tags">{group.skills.join("  ·  ")}</p>
             </div>
           ))}
         </div>
@@ -154,6 +160,17 @@ const accent = siteConfig.accentColor;
         font-weight: 600;
       }
 
+      .resume-objective {
+        display: inline-block;
+        margin: 5px 0 0;
+        border-radius: 4px;
+        background: #ecfdf5;
+        padding: 2px 7px;
+        color: #047857;
+        font-size: 10.5px;
+        font-weight: 700;
+      }
+
       .resume-contact {
         margin: 0;
         padding: 0;
@@ -200,25 +217,39 @@ const accent = siteConfig.accentColor;
 
       .resume-skill-grid {
         display: grid;
-        gap: 5px;
+        gap: 9px;
       }
 
-      .resume-skill-row {
-        display: flex;
-        gap: 10px;
-        align-items: baseline;
-        font-size: 11px;
+      .resume-skill-block {
+        break-inside: avoid;
       }
 
       .resume-skill-name {
-        flex: none;
-        width: 132px;
+        margin: 0 0 3px;
+        border-left: 3px solid var(--accent, #047857);
+        padding-left: 7px;
         color: #111827;
+        font-size: 11.5px;
         font-weight: 700;
       }
 
-      .resume-skill-values {
-        color: #4b5563;
+      .resume-skill-details {
+        margin: 0;
+        padding-left: 10px;
+      }
+
+      .resume-skill-details li {
+        color: #374151;
+        font-size: 10.5px;
+        line-height: 1.6;
+      }
+
+      .resume-skill-tags {
+        margin: 3px 0 0;
+        padding-left: 10px;
+        color: #047857;
+        font-size: 9.5px;
+        font-weight: 600;
       }
 
       .resume-item {

@@ -212,25 +212,25 @@ export const siteConfig = {
     },
   ],
   education: [] as Array<{ school: string; degree: string; dateRange: string }>,
-  // gallery: {
-  //   intro:
-  //     "机房是 SRE 的现场。数据中心的机架、网络设备的指示灯、监控大屏上跳动的曲线——稳定的系统，就藏在这些细节里。",
-  //   images: [
-  //     { image: t2i("modern data center server room, long corridor of glowing server racks with blue led lights, dark atmosphere, wide angle photograph", "landscape_16_9"), label: "数据中心", alt: "数据中心服务器机架走廊" },
-  //     { image: t2i("rows of server racks in cloud data center, blinking led lights, glass floor reflection, cinematic lighting", "landscape_16_9"), label: "数据中心", alt: "云数据中心成排机架" },
-  //     { image: t2i("close up of server rack hardware, blinking status leds and ventilation grilles, shallow depth of field, dark moody photo", "landscape_16_9"), label: "数据中心", alt: "服务器硬件指示灯特写" },
-  //     { image: t2i("wide shot of cloud computing data center hall, illuminated server cabinets, cold aisle containment, blue ambient light", "landscape_16_9"), label: "数据中心", alt: "云计算数据中心机房" },
-  //     { image: t2i("engineer hands typing on laptop keyboard in server room, server rack lights in background, night shift, cinematic photo", "landscape_16_9"), label: "数据中心", alt: "机房内笔记本操作现场" },
-  //     { image: t2i("macro photo of ethernet network cables plugged into switch, glowing ports, shallow depth of field, blue green light", "landscape_16_9"), label: "网络与设备", alt: "交换机网线端口特写" },
-  //     { image: t2i("network engineer hands connecting fiber optic cable with glowing red laser tip in dark server room", "landscape_16_9"), label: "网络与设备", alt: "光纤熔接现场" },
-  //     { image: t2i("large network operations center wall screen showing monitoring dashboards and metrics, dark NOC room, wide photo", "landscape_16_9"), label: "网络与设备", alt: "NOC 监控大屏" },
-  //     { image: t2i("close up of network switch panel with many patch cables, led indicators, rack mounted hardware, detailed photograph", "landscape_16_9"), label: "网络与设备", alt: "配线架与交换机设备" },
-  //     { image: t2i("cloud server room interior seen through glass door, racks with warm and blue lights, modern tech facility photograph", "landscape_16_9"), label: "网络与设备", alt: "玻璃门后的数据中心" },
-  //   ],
-  //   highlight: {
-  //     image: t2i("site reliability engineer sitting alone in dark server room at night working on laptop, emergency on-call incident response, server racks glowing in background, cinematic realistic photo", "landscape_16_9"),
-  //     label: "夜间应急值守",
-  //     caption: "稳定的系统背后，是有人在看不见的时候守着。",
-  //   },
-  // },
+  gallery: {
+    intro:
+      "机房是 SRE 的现场。数据中心的机架、网络设备的指示灯、监控大屏上跳动的曲线——稳定的系统，就藏在这些细节里。",
+    images: [
+      // { image: t2i("modern data center server room, long corridor of glowing server racks with blue led lights, dark atmosphere, wide angle photograph", "landscape_16_9"), label: "数据中心", alt: "数据中心服务器机架走廊" },
+      // { image: t2i("rows of server racks in cloud data center, blinking led lights, glass floor reflection, cinematic lighting", "landscape_16_9"), label: "数据中心", alt: "云数据中心成排机架" },
+      // { image: t2i("close up of server rack hardware, blinking status leds and ventilation grilles, shallow depth of field, dark moody photo", "landscape_16_9"), label: "数据中心", alt: "服务器硬件指示灯特写" },
+      // { image: t2i("wide shot of cloud computing data center hall, illuminated server cabinets, cold aisle containment, blue ambient light", "landscape_16_9"), label: "数据中心", alt: "云计算数据中心机房" },
+      // { image: t2i("engineer hands typing on laptop keyboard in server room, server rack lights in background, night shift, cinematic photo", "landscape_16_9"), label: "数据中心", alt: "机房内笔记本操作现场" },
+      // { image: t2i("macro photo of ethernet network cables plugged into switch, glowing ports, shallow depth of field, blue green light", "landscape_16_9"), label: "网络与设备", alt: "交换机网线端口特写" },
+      // { image: t2i("network engineer hands connecting fiber optic cable with glowing red laser tip in dark server room", "landscape_16_9"), label: "网络与设备", alt: "光纤熔接现场" },
+      // { image: t2i("large network operations center wall screen showing monitoring dashboards and metrics, dark NOC room, wide photo", "landscape_16_9"), label: "网络与设备", alt: "NOC 监控大屏" },
+      // { image: t2i("close up of network switch panel with many patch cables, led indicators, rack mounted hardware, detailed photograph", "landscape_16_9"), label: "网络与设备", alt: "配线架与交换机设备" },
+      // { image: t2i("cloud server room interior seen through glass door, racks with warm and blue lights, modern tech facility photograph", "landscape_16_9"), label: "网络与设备", alt: "玻璃门后的数据中心" },
+    ],
+    highlight: {
+      image: t2i("site reliability engineer sitting alone in dark server room at night working on laptop, emergency on-call incident response, server racks glowing in background, cinematic realistic photo", "landscape_16_9"),
+      label: "夜间应急值守",
+      caption: "稳定的系统背后，是有人在看不见的时候守着。",
+    },
+  },
 };

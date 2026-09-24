@@ -7,22 +7,24 @@ const t2i = (prompt: string, image_size: string) =>
 
 export const siteConfig = {
   name: "Alex Li",
-  title: "稳定性站点工程师——SRE",
-  jobObjective: "SRE/GO开发工程师",
+  title: "运维开发工程师 · Go / Kubernetes 平台开发",
+  jobObjective: "Go 开发 / 运维开发 / SRE 工程师",
   description:
-    "Alex Li 的个人网站：运维开发工程师，专注 Go、Kubernetes、云原生基础设施、可观测性与自动化，把复杂系统变得稳定、可观测、可自动化。",
+    "Alex Li：用 Go 造平台的运维开发工程师。从 0 到 1 独立交付 TRM 云原生智能研运平台（九大模块），擅长 Kubernetes 二次开发、Go 后端、Vue 3 前端、可观测性与自动化。",
   siteUrl: "https://alexli-dev.github.io",
   accentColor: "#047857",
-  heroStatement: "用自动化与可观测性，把复杂系统变得稳定、可观测、可自动化。",
+  heroBadges: ["GO", "KUBERNETES", "PLATFORM ENGINEERING", "VUE 3", "AIOPS", "FINOPS"],
+  heroStatement:
+    "我不做手工运维，我用 Go 把运维能力沉淀成平台——从 0 到 1 独立交付覆盖九大模块的云原生智能研运平台，让复杂系统稳定、可观测、可自动化。",
   social: {
     email: "2119084416@qq.com",
     github: "https://github.com/AlexLi-Dev",
     zsxq: "https://wx.zsxq.com/group/48888212411248",
   },
   about: [
-    "我是一名运维开发工程师，有 2 年工作经验。我关注的不只是服务能不能跑起来，更是系统为什么稳定、哪里会失败，以及如何让下一次故障不再重复发生。",
-    "Go 与云原生是我的底座：用 Gin / GoFrame 构建运维平台与自动化工具，管理 Kubernetes 集群与 CI/CD 流水线，也为 MySQL、Redis、Kafka、RabbitMQ 等中间件建立可观测的运行边界。",
-    "我习惯先观察、再变更；把重复的事情自动化，把重要的事情度量出来，把一次排障的经验沉淀成工具、监控、告警或文档——让系统被看见，让失败有迹可循。",
+    "我是一名用 Go 造平台的运维开发工程师。两年时间，我从 0 到 1 设计并开发了 TRM——一个覆盖多集群、边缘云、AIOps、FinOps 的云原生智能研运平台：九大模块，前后端全部独立交付，代码与架构完全公开。",
+    "我的差异化是全栈交付：Go + Gin 写后端服务与自动化工具，client-go 做 Kubernetes 二次开发（CRD / Operator / Webhook），Vue 3 + TypeScript 独立完成前端；Prometheus / Grafana、ELK 建立可观测边界，Ansible、Terraform、Argo CD 把环境交付全部流水线化。",
+    "我相信稳定性是工程化的结果，不是人守出来的运气：重复的事情自动化，重要的事情度量出来，每一次故障都沉淀成监控、告警或工具——让系统被看见，让失败有迹可循，让下一次故障不再重复发生。",
   ],
   capabilityGroups: [
     {
@@ -76,9 +78,9 @@ export const siteConfig = {
   trm: {
     name: "TRM",
     chineseName: "云原生智能研运平台",
-    tagline: "面向 Kubernetes 多集群、边缘云、AIOps 与 FinOps 场景的云原生平台",
+    tagline: "从 0 到 1 独立设计开发：一个人，交付九大模块与前后端全栈",
     summary:
-      "我没有把它做成单一集群的管理界面，而是围绕“多集群接入—统一管控—智能运维—成本治理”构建研运一体化平台：覆盖集群与节点管理、智驾边缘云、应用工作负载、CICD、AIOps、FinOps、告警中心与系统设置九大模块。",
+      "TRM 是我独立设计并开发的云原生智能研运平台。围绕“多集群接入—统一管控—智能运维—成本治理”主线，覆盖集群与节点管理、智驾边缘云、应用工作负载、CICD、AIOps、FinOps、告警中心与系统设置九大模块——它不是教程 Demo，而是按真实生产场景设计、代码与架构全部公开的完整工程。",
     repo: "https://github.com/AlexLi-Dev/Trm",
     caseStudy: "/trm/",
     logo: "/trm/logo.svg",
@@ -90,9 +92,9 @@ export const siteConfig = {
     activeStep: 3,
     loop: ["多集群接入", "工作负载", "CICD", "AIOps", "FinOps"],
     facts: [
-      { value: "9", label: "平台功能模块" },
-      { value: "多集群", label: "K8s / 边缘云统一管控" },
-      { value: "Go+Vue3", label: "前后端核心技术栈" },
+      { value: "9", label: "大功能模块，前后端全栈独立交付" },
+      { value: "20+", label: "核心技术组件（Go/Vue/K8s…）" },
+      { value: "多集群", label: "K8s / 边缘云统一纳管" },
     ],
     capabilities: [
       {
@@ -148,8 +150,8 @@ export const siteConfig = {
       eyebrow: "Reliability",
       title: "让每一次故障都留下可复用的防线",
       description:
-        "负责 Prometheus / Grafana / ELK 可观测性体系与告警规则建设，把故障响应拆成发现、定位、止损、复盘四步，并将复盘结论转成新的监控指标、告警阈值和自动化检查。",
-      outcome: "同类故障的平均发现与恢复时间持续下降，复盘项可追踪、可回归",
+        "负责 Prometheus / Grafana / ELK 可观测性体系与告警规则建设，把故障响应拆成发现、定位、止损、复盘四步，并将每一项复盘结论转成新的监控指标、告警阈值或自动化检查。",
+      outcome: "故障发现从“用户先报”变为“系统先感知”，复盘项可追踪、可回归、不二次发生",
     },
     {
       index: "02",
@@ -157,17 +159,17 @@ export const siteConfig = {
       title: "把重复运维操作收敛成自动化流水线",
       description:
         "用 Go 开发巡检、安全扫描与网络检测工具，并通过 CI/CD、Ansible 与 Terraform 把配置变更、环境交付和中间件运维流水线化，减少人工操作窗口和漂移。",
-      outcome: "常规交付与巡检从人工执行转为流水线自动运行",
+      outcome: "巡检与环境交付脱离人肉操作窗口，全部沉淀为可重复运行、可审计的流水线",
     },
   ],
   aiHarness:
-    "正在探索 AI × SRE：用 Agent 辅助日志分析、故障定位与运维知识检索——Agent 提供语义判断，自动化脚本负责确定性执行，关键操作仍需人工确认与可观测证据。",
+    "我把 AI 当同事而不是神：让 Agent 负责日志聚类、故障假设与运维知识检索，自动化脚本负责确定性执行，关键操作保留人工确认与可观测证据——先用 AI 提升判断效率，再逐步谈自治。",
   projects: [
     {
       name: "front-scaffold",
       eyebrow: "Frontend Engineering",
       description:
-        "基于 Vue 3 + Vite 的后台管理前端脚手架：登录认证、Mock API、受保护后台布局，以及用户、产品、订单三个基础管理模块。",
+        "为团队快速起步而设计的 Vue 3 后台管理脚手架：登录认证、权限化路由、Mock 开发链路与可复用布局，内置用户、产品、订单三个参考模块，开箱即可 Docker + Nginx 部署——让新业务第一天就专注功能，而不是重搭基建。",
       proof: "Pinia · Vue Router · vite-plugin-mock · Vitest · Docker + Nginx 部署",
       link: "https://github.com/AlexLi-Dev/front-scaffold",
       icon: "/logos/vue.svg",
@@ -177,8 +179,8 @@ export const siteConfig = {
       name: "ala-city",
       eyebrow: "Backend Project",
       description:
-        "基于 Python / Django 的商城项目，包含 lufyy_api 后端服务、模板页面、管理脚本与 SQLite 数据。",
-      proof: "Python · Django · 商城业务",
+        "Python / Django 全栈商城实践：独立完成 API 设计、数据建模与页面渲染。在 Go 与云原生主线之外，它证明我具备快速切换语言栈、独立打通前后端的能力。",
+      proof: "Python · Django · 独立全栈实践",
       link: "https://github.com/AlexLi-Dev/ala-city",
       icon: "/logos/django.svg",
       skills: ["Python", "Django", "SQLite"],
@@ -206,9 +208,9 @@ export const siteConfig = {
       title: "运维开发工程师 · 2 年经验",
       logo: "/logos/company.svg",
       bullets: [
-        "负责 Kubernetes 集群管理、CI/CD 流水线建设与 Prometheus / Grafana / ELK 可观测性体系搭建。",
-        "使用 Go（Gin / GoFrame）开发运维平台与自动化工具，支撑 MySQL、Redis、Kafka、RabbitMQ 等中间件稳定运行。",
-        "通过自动化与平台化手段提升系统可靠性与运维效率，负责故障应急响应、根因分析与复盘改进。",
+        "负责 Kubernetes 集群管理与 CI/CD 流水线建设，搭建 Prometheus / Grafana / ELK 全链路可观测体系，让故障从被动响应变为主动感知。",
+        "用 Go（Gin / GoFrame）从 0 到 1 开发运维平台与自动化工具，覆盖集群管理、巡检与中间件运维，把重复操作沉淀为平台能力。",
+        "保障 MySQL、Redis、Kafka、RabbitMQ 等中间件稳定运行并负责故障应急，坚持“故障必有复盘、复盘必产出防线”，同类问题不重复发生。",
       ],
     },
   ],

@@ -6,7 +6,7 @@ const t2i = (prompt: string, image_size: string) =>
   )}&image_size=${image_size}`;
 
 export const siteConfig = {
-  name: "Alex Li",
+  name: "李路通",
   title: "运维开发工程师 · Go / Kubernetes 平台开发",
   jobObjective: "Go 开发 / 运维开发 / SRE 工程师",
   description:

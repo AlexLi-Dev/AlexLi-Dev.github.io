@@ -16,7 +16,7 @@ const links = [
 ];
 ---
 
-<header class="absolute inset-x-0 top-0 z-50">
+<header id="site-header" class="fixed inset-x-0 top-0 z-50">
   <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8 md:py-4">
     <a
       href={homePath || "#hero"}
@@ -93,4 +93,42 @@ const links = [
       button?.setAttribute("aria-expanded", "false");
     });
   });
+
+  const header = document.getElementById("site-header");
+  if (header) {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      header.classList.toggle("header-scrolled", window.scrollY > 8);
+    };
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true }
+    );
+    update();
+  }
 </script>
+
+<style>
+  #site-header {
+    transition:
+      background-color 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  #site-header.header-scrolled {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom-color: rgba(17, 24, 39, 0.07);
+    box-shadow: 0 1px 12px rgba(17, 24, 39, 0.06);
+  }
+</style>

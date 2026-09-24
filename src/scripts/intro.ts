@@ -75,7 +75,7 @@ export function initIntro(): void {
       },
       1.1
     )
-    .to(content, { y: -26, opacity: 0, duration: 0.4, ease: "power2.in" }, 2.75)
+    .to(content, { y: -26, opacity: 0, duration: 0.4, ease: "power2.in" }, 4.75)
     .to(
       overlay,
       {
@@ -87,6 +87,6 @@ export function initIntro(): void {
           finish();
         },
       },
-      3.15
+      5.15
     );
 }

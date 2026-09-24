@@ -74,12 +74,8 @@ import { siteConfig } from "../config";
       </div>
 
       <div class="hero-portrait animation-delay-600 animate-fade-in relative">
-        <div
-          aria-hidden="true"
-          class="absolute -inset-1.5 rotate-2 rounded-[1.25rem] border lg:-inset-3 lg:rotate-3 lg:rounded-[2rem]"
-          style={{ borderColor: `${siteConfig.accentColor}45` }}
-        ></div>
-        <div class="relative aspect-square overflow-hidden rounded-[1rem] border-2 border-white bg-gray-200 shadow-xl shadow-gray-900/20 lg:rounded-[1.75rem] lg:border-4 lg:shadow-2xl">
+        <div aria-hidden="true" class="avatar-ring absolute"></div>
+        <div class="avatar-frame relative aspect-square overflow-hidden rounded-[1rem] border-2 border-white bg-gray-200 shadow-xl shadow-gray-900/20 lg:rounded-[1.75rem] lg:border-4 lg:shadow-2xl">
           <img
             src="/avatar.jpg"
             alt={`${siteConfig.name}的头像`}
@@ -156,4 +152,47 @@ import { siteConfig } from "../config";
   .animation-delay-200 { animation-delay: 0.2s; }
   .animation-delay-400 { animation-delay: 0.4s; }
   .animation-delay-600 { animation-delay: 0.6s; }
+
+  /* 头像动态旋转光环 */
+  .avatar-ring {
+    inset: -0.375rem;
+    z-index: 0;
+    border-radius: 1.25rem;
+    background: conic-gradient(
+      from 0deg,
+      var(--accent-color) 0deg,
+      color-mix(in srgb, var(--accent-color) 35%, white) 70deg,
+      transparent 150deg,
+      transparent 210deg,
+      var(--accent-color) 360deg
+    );
+    animation: avatarRingSpin 4s linear infinite;
+  }
+
+  @media (min-width: 1024px) {
+    .avatar-ring {
+      inset: -0.625rem;
+      border-radius: 2rem;
+    }
+  }
+
+  @keyframes avatarRingSpin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* 悬停时头像轻微旋转放大 */
+  .avatar-frame {
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hero-portrait:hover .avatar-frame {
+    transform: rotate(4deg) scale(1.04);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .avatar-ring { animation: none; }
+    .avatar-frame { transition: none; }
+    .hero-portrait:hover .avatar-frame { transform: none; }
+  }
 </style>

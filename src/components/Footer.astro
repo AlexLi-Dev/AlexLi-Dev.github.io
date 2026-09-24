@@ -15,6 +15,7 @@ const { homePath = "" } = Astro.props;
         <p class="mt-2 text-sm text-gray-600">{siteConfig.title}</p>
         <div class="mt-5 flex flex-wrap gap-3">
           <a href={`mailto:${siteConfig.social.email}`} class="rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:border-gray-500">邮件联系</a>
+          <a href={siteConfig.social.zsxq} target="_blank" rel="noopener noreferrer" class="rounded-full px-4 py-2 text-sm font-semibold text-white" style={{ backgroundColor: "#1E80FF" }}>知识星球 ↗</a>
           <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" class="rounded-full px-4 py-2 text-sm font-semibold text-white" style={{ backgroundColor: siteConfig.accentColor }}>GitHub 主页 ↗</a>
         </div>
       </div>

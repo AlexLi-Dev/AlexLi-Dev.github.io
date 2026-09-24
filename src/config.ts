@@ -17,6 +17,7 @@ export const siteConfig = {
   social: {
     email: "2119084416@qq.com",
     github: "https://github.com/AlexLi-Dev",
+    zsxq: "https://wx.zsxq.com/group/48888212411248",
   },
   about: [
     "我是一名运维开发工程师，有 2 年工作经验。我关注的不只是服务能不能跑起来，更是系统为什么稳定、哪里会失败，以及如何让下一次故障不再重复发生。",

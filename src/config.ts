@@ -12,7 +12,7 @@ export const siteConfig = {
   description:
     "Alex Li：用 Go 造平台的运维开发工程师。从 0 到 1 独立交付 TRM 云原生智能研运平台（九大模块），擅长 Kubernetes 二次开发、Go 后端、Vue 3 前端、可观测性与自动化。",
   siteUrl: "https://alexli-dev.github.io",
-  accentColor: "#047857",
+  accentColor: "#2563EB",
   heroBadges: ["GO", "KUBERNETES", "PLATFORM ENGINEERING", "VUE 3", "AIOPS", "FINOPS"],
   heroStatement:
     "我不做手工运维，我用 Go 把运维能力沉淀成平台——从 0 到 1 独立交付覆盖九大模块的云原生智能研运平台，让复杂系统稳定、可观测、可自动化。",

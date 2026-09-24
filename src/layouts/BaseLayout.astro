@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import IntroOverlay from "../components/IntroOverlay.astro";
 import { siteConfig } from "../config";
 import "../styles/global.css";
 
@@ -56,6 +57,7 @@ const personSchema = {
     <title>{title}</title>
   </head>
   <body>
+    <IntroOverlay />
     <Header homePath={homePath} />
     <main><slot /></main>
     <Footer homePath={homePath} />

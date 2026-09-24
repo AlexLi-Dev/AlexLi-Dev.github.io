@@ -1,0 +1,285 @@
+---
+import { siteConfig } from "../config";
+const accent = siteConfig.accentColor;
+---
+
+<script is:inline>
+  (function () {
+    try {
+      var KEY = "alexli-intro-v1";
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduced && !sessionStorage.getItem(KEY)) {
+        document.documentElement.classList.add("intro-active");
+        window.addEventListener("load", function () {
+          window.setTimeout(function () {
+            document.documentElement.classList.remove("intro-active");
+          }, 7000);
+        });
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<div class="intro-overlay" style={`--intro-accent: ${accent}`} aria-hidden="true">
+  <div class="intro-bg-grid"></div>
+  <div class="intro-halo intro-halo-a"></div>
+  <div class="intro-halo intro-halo-b"></div>
+  <div class="intro-scanline"></div>
+
+  <p class="intro-corner intro-corner-tl">ALEX&nbsp;LI&nbsp;&nbsp;—&nbsp;&nbsp;PORTFOLIO</p>
+  <p class="intro-corner intro-corner-tr">SYS.v2026</p>
+  <p class="intro-corner intro-corner-bl">INITIALIZING&nbsp;CONSOLE</p>
+  <p class="intro-corner intro-corner-br">LAT 0.000&nbsp;/&nbsp;LON 0.000</p>
+
+  <div class="intro-content">
+    <div class="intro-avatar">
+      <div class="intro-avatar-ring"></div>
+      <img src="/avatar.jpg" alt="" class="intro-avatar-img" />
+    </div>
+
+    <h1 class="intro-name">Alex Li</h1>
+    <div class="intro-rule"></div>
+    <p class="intro-subtitle">运维开发工程师&nbsp;&nbsp;/&nbsp;&nbsp;SRE · CLOUD NATIVE</p>
+
+    <div class="intro-progress">
+      <div class="intro-progress-track">
+        <div class="intro-progress-fill"></div>
+      </div>
+      <p class="intro-progress-text"><span class="intro-progress-num">000</span>%&nbsp;&nbsp;LOADING</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  html.intro-active body {
+    overflow: hidden;
+  }
+
+  .intro-overlay {
+    display: none;
+  }
+
+  html.intro-active .intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #04070f;
+    color: #fff;
+    clip-path: circle(0% at 50% 42%);
+  }
+
+  .intro-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 42%, black 30%, transparent 75%);
+  }
+
+  .intro-halo {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    border-radius: 9999px;
+    pointer-events: none;
+  }
+
+  .intro-halo-a {
+    width: min(78vmin, 620px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      var(--intro-accent) 60deg,
+      transparent 140deg,
+      transparent 220deg,
+      color-mix(in srgb, var(--intro-accent) 55%, white) 290deg,
+      transparent 360deg
+    );
+    filter: blur(28px);
+    opacity: 0.35;
+    animation: introHaloSpin 7s linear infinite;
+  }
+
+  .intro-halo-b {
+    width: min(46vmin, 360px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background: conic-gradient(
+      from 180deg,
+      transparent 0deg,
+      color-mix(in srgb, var(--intro-accent) 80%, white) 80deg,
+      transparent 170deg,
+      var(--intro-accent) 320deg,
+      transparent 360deg
+    );
+    opacity: 0.5;
+    animation: introHaloSpin 4.5s linear infinite reverse;
+  }
+
+  @keyframes introHaloSpin {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  .intro-scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    top: 0;
+    background: linear-gradient(90deg, transparent, var(--intro-accent), transparent);
+    opacity: 0.65;
+    animation: introScan 3.2s linear infinite;
+  }
+
+  @keyframes introScan {
+    to {
+      transform: translateY(100vh);
+    }
+  }
+
+  .intro-corner {
+    position: absolute;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .intro-corner-tl { top: 20px; left: 20px; }
+  .intro-corner-tr { top: 20px; right: 20px; }
+  .intro-corner-bl { bottom: 20px; left: 20px; }
+  .intro-corner-br { bottom: 20px; right: 20px; }
+
+  .intro-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 24px;
+  }
+
+  .intro-avatar {
+    position: relative;
+    width: 84px;
+    height: 84px;
+  }
+
+  .intro-avatar-ring {
+    position: absolute;
+    inset: -7px;
+    border-radius: 22px;
+    background: conic-gradient(
+      from 0deg,
+      var(--intro-accent) 0deg,
+      color-mix(in srgb, var(--intro-accent) 30%, white) 70deg,
+      transparent 150deg,
+      transparent 210deg,
+      var(--intro-accent) 360deg
+    );
+    animation: introHaloSpin 3.5s linear infinite;
+  }
+
+  .intro-avatar-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    object-fit: cover;
+    background: #111827;
+  }
+
+  .intro-name {
+    margin-top: 26px;
+    font-size: clamp(2.6rem, 11vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    display: flex;
+  }
+
+  .intro-rule {
+    margin-top: 16px;
+    width: 64px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--intro-accent);
+  }
+
+  .intro-subtitle {
+    margin-top: 14px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: clamp(10px, 2.6vw, 13px);
+    letter-spacing: 0.24em;
+    color: rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+  }
+
+  .intro-progress {
+    margin-top: 34px;
+    width: min(72vw, 320px);
+  }
+
+  .intro-progress-track {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+  }
+
+  .intro-progress-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--intro-accent), color-mix(in srgb, var(--intro-accent) 45%, white));
+    box-shadow: 0 0 12px var(--intro-accent);
+  }
+
+  .intro-progress-text {
+    margin-top: 12px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: right;
+  }
+
+  .intro-progress-num {
+    color: #fff;
+  }
+
+  :global(.intro-letter-mask) {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+
+  :global(.intro-letter) {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .intro-halo-a,
+    .intro-halo-b,
+    .intro-avatar-ring,
+    .intro-scanline {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  import { initIntro } from "../scripts/intro";
+  initIntro();
+</script>
